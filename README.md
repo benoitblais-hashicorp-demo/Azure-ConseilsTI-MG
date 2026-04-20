@@ -36,18 +36,17 @@ Use OIDC for secure, passwordless authentication from your CI/CD pipelines (e.g.
   provider "azurerm" {
     features {}
     
-    use_oidc  = true
-    tenant_id = "<tenant-id>"
-    client_id = "<client-id>"
-    subscription_id = "<subscription-id>"
+    subscription_id = var.subscription_id
+    tenant_id       = var.tenant_id
+
+    use_oidc = true
+    use_cli  = false
   }
   ```
 
 - **Using HCP Terraform Workspace variables**
   - `TFC_AZURE_PROVIDER_AUTH=true`
   - `TFC_AZURE_RUN_CLIENT_ID`
-  - `TFC_AZURE_RUN_TENANT_ID`
-  - `TFC_AZURE_RUN_SUBSCRIPTION_ID`
 
 ### Service Principal and Client Secret
 
@@ -116,6 +115,18 @@ Type: `string`
 ### <a name="input_root_parent_id"></a> [root\_parent\_id](#input\_root\_parent\_id)
 
 Description: (Required) The root\_parent\_id is used to specify where to set the root for all Landing Zone deployments. Usually the Tenant ID when deploying the core Enterprise-scale Landing Zones.
+
+Type: `string`
+
+### <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id)
+
+Description: (Required) Azure Subscription ID for the provider to authenticate against.
+
+Type: `string`
+
+### <a name="input_tenant_id"></a> [tenant\_id](#input\_tenant\_id)
+
+Description: (Required) Azure Tenant ID for the provider to authenticate against.
 
 Type: `string`
 
